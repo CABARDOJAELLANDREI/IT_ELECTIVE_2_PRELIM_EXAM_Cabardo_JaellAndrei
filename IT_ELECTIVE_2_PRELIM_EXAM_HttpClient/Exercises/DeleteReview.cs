@@ -19,10 +19,8 @@ public static class DeleteReview
     {
         string url = "https://jsonplaceholder.typicode.com/posts/1";
 
-        // 1. Send a DELETE request to remove post with ID 1
         HttpResponseMessage response = await client.DeleteAsync(url);
 
-        // 2. Assert status code is 200 OK
         if (response.StatusCode != System.Net.HttpStatusCode.OK)
         {
             throw new Exception($"Assertion failed: Status code was {response.StatusCode}, expected 200 OK.");

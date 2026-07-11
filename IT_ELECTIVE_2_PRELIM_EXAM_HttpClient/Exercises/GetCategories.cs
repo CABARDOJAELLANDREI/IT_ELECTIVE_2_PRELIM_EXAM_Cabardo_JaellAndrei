@@ -19,21 +19,17 @@ public static class GetCategories
     {
         string url = "https://themealdb.com/api/json/v1/1/categories.php";
 
-        // 1. Use the HttpClient to fetch all meal categories
         HttpResponseMessage response = await client.GetAsync(url);
 
-        // 2. Assert status code is 200 OK
         if (response.StatusCode != System.Net.HttpStatusCode.OK)
         {
             throw new Exception($"Assertion failed: Status code was {response.StatusCode}, expected 200 OK.");
         }
 
-        // 3. Parse the response JSON
         string responseString = await response.Content.ReadAsStringAsync();
         using JsonDocument doc = JsonDocument.Parse(responseString);
         JsonElement root = doc.RootElement;
 
-        // Assert the "categories" array has more than 0 items
         if (!root.TryGetProperty("categories", out JsonElement categoriesArray) || categoriesArray.ValueKind != JsonValueKind.Array)
         {
             throw new Exception("Assertion failed: Response JSON does not contain a valid 'categories' array.");
