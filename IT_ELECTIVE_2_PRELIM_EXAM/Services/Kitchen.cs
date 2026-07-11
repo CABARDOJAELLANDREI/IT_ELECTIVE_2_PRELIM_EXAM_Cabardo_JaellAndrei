@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using 
+using System.Linq;
 using IT_ELECTIVE_2_PRELIM_EXAM.Models;
 
 namespace IT_ELECTIVE_2_PRELIM_EXAM.Services;
@@ -21,11 +21,11 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM.Services;
 
 public class Kitchen
 {
-    public string kitchenName;
-    public string headChef;
-    public int mealCount;
-    public List<Meal> meals;
+    private string kitchenName;
+    private string headChef;
+    private List<Meal> meals;
 
+    public int mealCount { get private set; }
     public Kitchen(string name, string chef)
     {
         kitchenName = name;
