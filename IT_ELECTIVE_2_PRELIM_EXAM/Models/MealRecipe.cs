@@ -1,3 +1,4 @@
+using System;
 using IT_ELECTIVE_2_PRELIM_EXAM.Interfaces;
 
 namespace IT_ELECTIVE_2_PRELIM_EXAM.Models;
@@ -14,7 +15,7 @@ namespace IT_ELECTIVE_2_PRELIM_EXAM.Models;
 // - Implement the SearchCriteria property (return the Title)
 // - Implement the MatchesSearch(string searchTerm) method (check if searchTerm is in Title, case-insensitive)
 
-public class MealRecipe : RecipeBase //, IRecipeSearchable  <-- EXERCISE 9: Uncomment this
+public class MealRecipe : RecipeBase, IRecipeSearchable //, IRecipeSearchable  <-- EXERCISE 9: Uncomment this
 {
     // EXERCISE 7: These properties need to be wired up properly
     // Currently they're stubs that don't store values correctly
@@ -28,8 +29,15 @@ public class MealRecipe : RecipeBase //, IRecipeSearchable  <-- EXERCISE 9: Unco
     public MealRecipe(string title, int prepTime, string difficulty)
         : base(title, prepTime, difficulty)
     {
-        Category = title;
-        Area = Area;
+        Category = "";
+        Area = "";
+    }
+
+    public MealRecipe(string title, int prepTime, string difficulty, string category, string area)
+        : base(title, prepTime, difficulty)
+    {
+        Category = category;
+        Area = area;
     }
 
     // EXERCISE 7: Create a constructor that also accepts category and area
@@ -47,7 +55,7 @@ public class MealRecipe : RecipeBase //, IRecipeSearchable  <-- EXERCISE 9: Unco
 
     public string SearchCriteria => Title;
 
-    public bool MatchesSearch(String searchTerm)
+    public bool MatchesSearch(string searchTerm)
     {
         if(string .IsNullOrEmpty(searchTerm)) return false;
         return Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase);

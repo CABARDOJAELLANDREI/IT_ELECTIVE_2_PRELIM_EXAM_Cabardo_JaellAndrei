@@ -25,7 +25,7 @@ public class Kitchen
     private string headChef;
     private List<Meal> meals;
 
-    public int mealCount { get private set; }
+    public int mealCount { get; private set; }
     public Kitchen(string name, string chef)
     {
         kitchenName = name;
